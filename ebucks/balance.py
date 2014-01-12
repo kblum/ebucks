@@ -1,5 +1,5 @@
 import urllib, urllib2, cookielib
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 import re
 
 
