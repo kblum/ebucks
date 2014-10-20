@@ -35,5 +35,8 @@ nosetests.xml
 .project
 .pydevproject
 
+# PyCharm/IntelliJ IDE project files
+.idea
+
 # Virtual Environment
 venv
