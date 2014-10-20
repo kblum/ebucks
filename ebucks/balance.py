@@ -1,4 +1,4 @@
-import urllib, urllib2, cookielib
+import requests
 from bs4 import BeautifulSoup
 import re
 
@@ -8,20 +8,18 @@ def get_balance(username, password):
     Scrape eBucks website to get balance and return as an integer.
     """
 
-    # create opener
-    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
-    urllib2.install_opener(opener)
+    # create a session so that cookies are persisted between requests
+    session = requests.Session()
 
-    # post to login validation page
+    # post to login page to set session cookie
     login_url = 'https://www.ebucks.com/web/loginValidate.do?Action=Login'
     login_data = {'userId': username, 'password': password}
-    opener.open(login_url, urllib.urlencode(login_data)).close()
+    session.post(login_url, params=login_data)
 
     # get contents of home page
     home_url = 'https://www.ebucks.com/web/eBucks/'
-    fp = opener.open(home_url)
-    page = fp.read()
-    fp.close()
+    response = session.get(home_url)
+    page = response.text
 
     # parse contents of home page to get the balance
     soup = BeautifulSoup(page)

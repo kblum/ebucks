@@ -9,7 +9,7 @@ def read(filename):
 
 setup(
     name = 'ebucks',
-    version = '0.1.0',
+    version = '0.2.0',
     author = 'Konrad Blum',
     author_email = 'konrad@kblum.com',
     packages = ['ebucks',],
@@ -20,5 +20,6 @@ setup(
     keywords = 'ebucks',
     install_requires = [
         'beautifulsoup4==4.3.2',
+        'requests==2.4.3',
     ],
 )
